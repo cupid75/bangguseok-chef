@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>방구석 요리사</title>
+  <style>
+    :root{--black:#111;--text:#171717;--sub:#666;--muted:#999;--line:#e5e5e5;--soft:#fafafa;--radius:12px}
+    *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;line-height:1.6}
+    button,input{font:inherit}.app{width:100%;max-width:720px;min-height:100vh;margin:auto;padding:0 20px 48px}.header{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee}.brand{font-size:18px;font-weight:650;letter-spacing:-.35px}.soon{color:var(--muted);font-size:14px}main{padding-top:48px}.view{display:none}.view.active{display:block}h1,h2,h3,p{margin-top:0}h1{margin-bottom:12px;font-size:clamp(28px,8vw,36px);line-height:1.22;letter-spacing:-1px}h2{margin-bottom:4px;font-size:22px;letter-spacing:-.5px}.eyebrow{margin-bottom:8px;color:var(--sub);font-size:14px;font-weight:600}.intro{max-width:440px;margin-bottom:32px;color:var(--sub)}
+    .form{display:grid;gap:12px}.input{width:100%;height:56px;padding:0 16px;border:1px solid #d9d9d9;border-radius:7px;outline:0}.input:focus{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}.primary,.secondary{min-height:54px;padding:0 16px;border-radius:7px;font-size:17px;font-weight:600;cursor:pointer}.primary{border:0;background:var(--black);color:#fff}.primary:disabled{background:#777}.secondary{border:1px solid var(--line);background:#fff;color:var(--text)}.guide{margin:4px 0 0;color:var(--muted);font-size:16px;line-height:1.6}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.chip{min-height:44px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--sub);font-size:16px;cursor:pointer}.chip:hover{border-color:var(--black);color:var(--black)}
+    .loading{display:none;align-items:center;gap:8px;margin-top:16px;color:var(--sub);font-size:16px}.loading.show{display:flex}.spin{width:16px;height:16px;border:2px solid #ddd;border-top-color:#111;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.error{margin-top:16px;color:#d1242f;font-size:16px;line-height:1.6}.back{display:inline-flex;align-items:center;min-height:44px;margin:-12px 0 20px;padding:0;border:0;background:transparent;color:var(--text);font-weight:600;cursor:pointer}.back:before{content:'←';margin-right:8px;font-size:18px}.heading{margin-bottom:20px}.heading p{margin:0;color:var(--sub)}.list{display:grid;gap:12px}.card{width:100%;padding:20px;border:1px solid #eaeaea;border-radius:var(--radius);background:#fff;text-align:left;box-shadow:0 4px 10px rgba(0,0,0,.03),0 1px 3px rgba(0,0,0,.04);cursor:pointer}.card:hover{border-color:#bbb}.cardTop{display:flex;align-items:center;justify-content:space-between;gap:12px}.card h3{margin:0;font-size:20px;letter-spacing:-.35px}.badge{flex:none;padding:3px 7px;border:1px solid var(--line);border-radius:999px;color:var(--sub);font-size:13px;font-weight:600}.meta{margin:10px 0 0;color:var(--sub);font-size:16px}.preview{margin:6px 0 0;overflow:hidden;color:var(--muted);font-size:15px;text-overflow:ellipsis;white-space:nowrap}.notice{padding:16px;border:1px solid #eee;border-radius:var(--radius);background:var(--soft);color:var(--sub)}.detailTitle{margin-bottom:10px}.detailMeta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}.detailMeta span{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--sub);font-size:15px}.section{padding:24px 0;border-top:1px solid #eee}.section h3{margin-bottom:10px;font-size:18px}.section p{margin:0;white-space:pre-line;color:var(--sub)}.steps{margin:0;padding-left:22px;color:var(--sub)}.steps li+li{margin-top:10px}
+
+    @media (max-width:768px){
+      body{font-size:17px;line-height:1.65}
+      .app{padding:0 20px 40px}
+      main{padding-top:36px}
+      .brand{font-size:18px}.soon{font-size:14px}
+      .eyebrow{font-size:15px}.intro{font-size:17px;line-height:1.65}
+      .input{height:54px;padding:0 16px;font-size:18px}
+      .primary,.secondary{min-height:52px;font-size:17px}
+      .guide,.loading,.error{font-size:16px;line-height:1.6}
+      .chip{min-height:44px;padding:8px 13px;font-size:16px}
+      .heading p,.notice{font-size:16px;line-height:1.65}
+      .card{padding:20px}.card h3{font-size:20px}.badge{font-size:13px}.meta{font-size:16px}.preview{font-size:15px}
+      .detailTitle{font-size:32px;line-height:1.25}.detailMeta span{font-size:15px}
+      .section h3{font-size:18px}.section p,.steps{font-size:16px;line-height:1.7}.steps li+li{margin-top:12px}
+    }
+
+    @media (max-width:1024px), (orientation:portrait){
+      .app{max-width:none;margin:0;padding:0 20px 40px}
+    }
+
+    html,body{width:100%;max-width:100%;overflow-x:hidden}.app,main,.view,.list,.card,.cardTop{min-width:0}.card{overflow:hidden}.cardTop{align-items:flex-start}.card h3{flex:1;min-width:0;overflow-wrap:anywhere}.preview{max-width:100%}
+    @media (max-width:480px){.list{gap:12px}.card{padding:16px}.cardTop{display:block}.card h3{font-size:19px;line-height:1.35}.badge{display:inline-block;margin-top:7px}.meta{margin-top:8px}.preview{overflow:visible;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header"><div class="brand">방구석 요리사</div><div class="soon">사진 갤러리 · 준비 중</div></header>
+    <main>
+      <section id="home" class="view active">
+        <p class="eyebrow">오늘 있는 재료로 간단하게</p><h1>무엇을 만들어 볼까요?</h1><p class="intro">냉장고에 있는 재료를 입력하면, 만들기 쉬운 레시피를 최대 3개 알려드려요.</p>
+        <form id="form" class="form"><label for="query" style="position:absolute;left:-9999px">보유한 재료</label><input id="query" class="input" placeholder="예: 계란, 양파, 두부" maxlength="100" autocomplete="off"><button id="submit" class="primary" type="submit">레시피 찾기</button><p class="guide">재료는 쉼표(,)로 구분해 입력하세요. 소금·식용유 등 기본 조미료는 자동으로 준비된 것으로 봅니다.</p></form>
+        <div id="loading" class="loading" role="status"><span class="spin"></span><span>레시피를 찾고 있어요.</span></div><p id="error" class="error" role="alert"></p>
+        <div class="chips"><button class="chip" type="button" data-query="계란, 양파">계란, 양파</button><button class="chip" type="button" data-query="두부">두부</button><button class="chip" type="button" data-query="김치, 밥">김치, 밥</button></div>
+      </section>
+      <section id="results" class="view"><button id="backHome" class="back" type="button">다시 검색</button><div class="heading"><h2>추천 레시피</h2><p id="description"></p></div><div id="list" class="list"></div></section>
+      <section id="detail" class="view"><button id="backResults" class="back" type="button">검색 결과</button><article id="article"></article></section>
+    </main>
+  </div>
+  <script>
+    // Apps Script iframe가 모바일 화면을 넓은 레이아웃으로 인식하는 경우에만,
+    // 최초 진입 시 한 번만 360px 기준으로 맞춥니다. 키보드 열림·닫힘에는 재계산하지 않습니다.
+    function setInitialMobileScale(){
+      const app=document.querySelector('.app');
+      const baseWidth=360;
+      const viewportWidth=Math.max(window.innerWidth||0,document.documentElement.clientWidth||0);
+      if(!app||!window.matchMedia('(orientation: portrait)').matches||viewportWidth<=baseWidth)return;
+      app.style.width=baseWidth+'px';
+      app.style.zoom=String(viewportWidth/baseWidth);
+      app.style.maxWidth='none';
+      app.style.margin='0';
+    }
+    setInitialMobileScale();
+
+    const state={recipes:[],query:[]};
+
+    const home=document.getElementById('home'),results=document.getElementById('results'),detail=document.getElementById('detail');
+    const input=document.getElementById('query'),form=document.getElementById('form'),submit=document.getElementById('submit'),loading=document.getElementById('loading'),error=document.getElementById('error');
+    function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+    function show(view){[home,results,detail].forEach(x=>x.classList.remove('active'));view.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+    function wait(on){submit.disabled=on;submit.textContent=on?'찾는 중...':'레시피 찾기';loading.classList.toggle('show',on)}
+    function friendlyError(err){const message=err&&err.message?err.message:'';if(message.includes('AI_TEMPORARILY_BUSY'))return 'AI가 잠시 붐비고 있어요. 잠시 후 다시 검색해 주세요.';if(message.includes('AI_RATE_LIMITED'))return 'AI 요청이 잠시 많아요. 잠시 후 다시 검색해 주세요.';return '검색 중 문제가 발생했어요. 잠시 후 다시 시도해 주세요.'}
+    function search(e){e.preventDefault();const q=input.value.trim();error.textContent='';if(!q){error.textContent='재료를 한 가지 이상 입력해 주세요.';input.focus();return}wait(true);google.script.run.withSuccessHandler(render).withFailureHandler(err=>{wait(false);error.textContent=friendlyError(err)}).searchRecipes(q)}
+    function render(data){wait(false);state.recipes=data.recipes||[];state.query=data.query||[];document.getElementById('description').textContent=state.query.length?'“'+state.query.join(', ')+'” 재료로 찾은 결과예요.':'검색 결과예요.';const list=document.getElementById('list');if(!state.recipes.length){list.innerHTML='<div class="notice">'+esc(data.message||'찾을 수 있는 레시피가 없습니다.')+'</div>';show(results);return}list.innerHTML=state.recipes.map((r,i)=>'<button class="card" type="button" data-index="'+i+'"><div class="cardTop"><h3>'+esc(r.title)+'</h3><span class="badge">'+(r.source==='AI생성'?'AI 추천':'기본 레시피')+'</span></div><p class="meta">'+esc(r.cookingTimeMinutes)+'분 · '+esc(r.servings)+'인분</p><p class="preview">'+esc(r.ingredients)+'</p></button>').join('');list.querySelectorAll('[data-index]').forEach(el=>el.addEventListener('click',()=>openRecipe(Number(el.dataset.index))));show(results)}
+    function section(title,value){return '<section class="section"><h3>'+title+'</h3><p>'+esc(value||'없음')+'</p></section>'}
+    function openRecipe(i){const r=state.recipes[i];if(!r)return;const steps=String(r.instructions||'').split(/\n+|(?=\d+\)\s*)/).filter(Boolean);const method=steps.length?'<ol class="steps">'+steps.map(s=>'<li>'+esc(s.replace(/^\d+[).]\s*/,''))+'</li>').join('')+'</ol>':'<p>조리 방법 정보가 없습니다.</p>';document.getElementById('article').innerHTML='<h1 class="detailTitle">'+esc(r.title)+'</h1><div class="detailMeta"><span>'+esc(r.cookingTimeMinutes)+'분</span><span>'+esc(r.servings)+'인분</span></div>'+section('구성 재료',r.ingredients)+section('필수 도구',r.requiredTools)+section('대체 재료',r.substitutions)+section('알레르기 주의',r.allergenInfo)+'<section class="section"><h3>만드는 방법</h3>'+method+'</section>';show(detail)}
+    form.addEventListener('submit',search);document.querySelectorAll('[data-query]').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.query;input.focus()}));document.getElementById('backHome').addEventListener('click',()=>show(home));document.getElementById('backResults').addEventListener('click',()=>show(results));
+  </script>
+</body>
+</html>
