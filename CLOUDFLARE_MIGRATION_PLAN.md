@@ -119,8 +119,13 @@
 
 목표: 개발·테스트용 Cloudflare 환경을 생성한다.
 
-- [ ] Cloudflare 계정의 소유자와 관리자 권한을 정한다.
-- [ ] 다중 인증을 활성화한다.
+- [x] Cloudflare 계정을 생성하고 이메일 인증을 완료한다.
+- [x] Cloudflare 계정의 소유자와 관리자 권한을 정한다. 현재 계정 소유자가 관리한다.
+- [x] 다중 인증을 활성화한다.
+- [x] 프로젝트 로컬 Wrangler 기본 설정과 진단 Worker를 작성한다.
+- [x] Wrangler OAuth 로그인을 완료하고 `cupid75@naver.com` 연결 계정을 확인한다.
+- [x] D1 데이터베이스 `bangguseok-chef-db`를 APAC 리전에 생성하고 Worker 바인딩을 설정한다.
+- [ ] Cloudflare 대시보드에서 R2 서비스를 최초 활성화한다.
 - [ ] Workers & Pages 프로젝트를 생성한다.
 - [ ] GitHub 저장소를 연결한다.
 - [ ] 프로덕션 브랜치를 `main`으로 지정한다.

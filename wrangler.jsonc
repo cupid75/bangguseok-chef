@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bangguseok-chef",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bangguseok-chef-db",
+      "database_id": "dbbe54ec-fbc3-4a62-a8bf-c816e08e7abe",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

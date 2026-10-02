@@ -8,6 +8,9 @@ dist/
 .env
 .env.*
 !.env.example
+cloudflare-*.txt
+*cloudflare*backup*code*.txt
+*cloudflare*recovery*code*.txt
 
 # Local backups and exports
 legacy-data/
@@ -18,4 +21,3 @@ legacy-data/
 .idea/
 .DS_Store
 Thumbs.db
-
