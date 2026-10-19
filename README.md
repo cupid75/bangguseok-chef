@@ -44,3 +44,7 @@
 | Cloudflare D1 | 데이터베이스 연결 설정; 레시피 데이터와 검색 로직 이전은 후속 작업 |
 
 기존 시스템 구조는 [조사 문서](P0_LEGACY_INVENTORY.md)에서 확인할 수 있습니다.
+
+## 사이트 바로가기
+
+[방구석 요리사 이용하기 — Google Apps Script 웹앱](https://script.google.com/macros/s/AKfycbxFM_YwO2A-bOn5eEZfvsPfUqmvp5uZ0csxWjt1QZCGIPEH7b6jD0ns_pteamLISPgR/exec)
