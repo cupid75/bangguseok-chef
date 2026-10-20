@@ -16,11 +16,9 @@
 - **모바일 이용 편의:** 작은 화면을 고려한 화면 구성, 검색 중 표시, 중복 검색 버튼 비활성화, 오류 안내를 적용했습니다.
 - **설정값 분리:** Gemini API 키와 연결할 스프레드시트 ID는 소스에 직접 넣지 않고 Apps Script의 스크립트 속성에서 읽습니다.
 
-현재 저장소에는 기존 Apps Script 소스와 Cloudflare 이전을 위한 초기 구성이 함께 포함되어 있습니다. **Cloudflare 버전은 이전 준비 단계**이며, 현재 Worker 코드에는 상태 확인용 API(`/api/health`)가 구현되어 있습니다. 레시피 검색 기능의 이전은 추후 반영할 예정입니다.
+기본 브랜치(`main`)에는 Google Apps Script 버전의 실행 소스와 설명 문서를 담았습니다. Cloudflare 이전 준비 작업은 [별도 브랜치](https://github.com/cupid75/bangguseok-chef/tree/codex/cloudflare-migration)에 보존했습니다. Cloudflare 버전의 레시피 검색 기능은 아직 이전 준비 단계입니다.
 
 ## 사용 기술
-
-### 기존 Google Apps Script 버전
 
 | 구분 | 기술 | 활용 내용 |
 | --- | --- | --- |
@@ -35,15 +33,27 @@
 
 기존 서비스의 주요 코드는 [서버 로직(Code.gs)](legacy-apps-script/Code.gs)와 [사용자 화면(Index.html)](legacy-apps-script/Index.html)에서 확인할 수 있습니다.
 
-### Cloudflare 이전 준비
+## 파일 구성
 
-| 기술 | 현재 반영 범위 |
-| --- | --- |
-| Cloudflare Workers | Worker 기본 코드와 상태 확인용 API |
-| Wrangler | 로컬 개발 및 배포 명령 구성 |
-| Cloudflare D1 | 데이터베이스 연결 설정; 레시피 데이터와 검색 로직 이전은 후속 작업 |
+```text
+README.md                       프로젝트 소개
+legacy-apps-script/
+├── Code.gs                      검색·캐시·AI·데이터 저장
+└── Index.html                   화면·스타일·브라우저 동작
+docs/
+├── SETUP.md                     실행 환경 및 배포 방법
+└── DEVELOPMENT.md               처리 흐름과 구현 과정
+.gitignore                      비밀 설정·로컬 백업 등 업로드 제외
+```
 
-기존 시스템 구조는 [조사 문서](P0_LEGACY_INVENTORY.md)에서 확인할 수 있습니다.
+## 실행 방법과 구현 과정
+
+이 앱은 Google Apps Script 환경에서 실행합니다. Google Sheets와 Gemini API 설정이 필요합니다.
+
+- [실행 및 배포 방법](docs/SETUP.md): 소스 등록, 시트 구성, 설정값 입력, 웹앱 배포
+- [구현 과정과 설계 선택](docs/DEVELOPMENT.md): 검색 처리 흐름, AI 호출 감소, 동시 요청 처리, 모바일 화면 보완
+
+운영용 API 키와 Google Sheets 데이터는 저장소에 포함하지 않습니다.
 
 ## 사이트 바로가기
 
